@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login Hotspot - SMA NEGERI 9 SURAKARTA</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url("img/bgg.jpg") no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        .center-box {
+            width: 350px;
+            background: rgba(152, 171, 255, 0.9);
+            margin: 60px auto;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        .logo-top {
+            width: 90px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-top: 5px;
+            color: #333;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-top: 15px;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            margin-top: 5px;
+            font-size: 15px;
+        }
+
+        .btn-login {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background: #28a745;
+            border: none;
+            border-radius: 6px;
+            color: rgb(255, 255, 255);
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-login:hover {
+            background: #23963d;
+        }
+
+        .slideshow {
+            width: 100%;
+            height: 150px;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .slideshow img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: none;
+        }
+
+        .footer {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #666;
+        }
+
+    </style>
+</head>
+
+<body>
+
+$(if chap-id)
+<form name="sendin" action="$(link-login-only)" method="post" style="display:none">
+    <input type="hidden" name="username" />
+    <input type="hidden" name="password" />
+    <input type="hidden" name="dst" value="$(link-orig)" />
+    <input type="hidden" name="popup" value="true" />
+</form>
+
+<script src="md5.js"></script>
+<script>
+    function doLogin() {
+        document.sendin.username.value = document.login.username.value;
+        document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+        document.sendin.submit();
+        return false;
+    }
+</script>
+$(endif)
+
+<div class="center-box">
+
+    <!-- LOGO SEKOLAH -->
+    <img src="img/logo.png" class="logo-top">
+     
+    <h2>Login Internet</h2>
+    <h2 style="font-size:14px; margin-top:5px; color:#555;">Selamat Datang di Layanan Hotspot</h2>
+    <h3 style="font-size:12px; margin-top:5px; color:#555;">SMAN 9 SURAKARTA</h3>
+     <MARQUEE BEHAVIOR="SCROLL" DIRECTION="LEFT" SCROLLAMOUNT="5" STYLE="color:#333; font-size:14px; margin-top:5px;">Gunakan Internet Dengan Bijak
+    </MARQUEE>  
+    <form name="login" action="$(link-login-only)" method="post" $(if chap-id) onsubmit="return doLogin()" $(endif)>
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+             
+        <div class="input-group">
+            <label>Username:</label>
+            <input name="username" type="text" value="$(username)" placeholder="Masukkan Username">
+        </div>
+
+        <div class="input-group">
+            <label>Password:</label>
+            <input name="password" type="password" placeholder="Masukkan Password">
+        </div>
+
+        <button class="btn-login" type="submit">Login</button>
+    </form>
+
+    <!-- SLIDESHOW GAMBAR -->
+    <div class="slideshow">
+        <img src="img/1.jpg" class="active">
+        <img src="img/2.jpg">
+        <img src="img/3.jpg">
+    </div>
+
+    <div class="footer">
+        © SMA NEGERI 9 SURAKARTA 2026
+    </div>
+
+</div>
+
+<script>
+let index = 0;
+let slides = document.querySelectorAll(".slideshow img");
+
+setInterval(() => {
+    slides[index].style.display = "none";
+    index = (index + 1) % slides.length;
+    slides[index].style.display = "block";
+}, 3000);
+</script>
+
+</body>
+</html>
